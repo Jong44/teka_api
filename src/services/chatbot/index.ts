@@ -66,7 +66,10 @@ export const sendMessage = async (message: string, threadId: string, res: any) =
 }
 
 export const getMessages = async (threadId: string) => {
-    const messages = await openai.beta.threads.messages.list(threadId);
+    const messages = await openai.beta.threads.messages.list(threadId, {
+        order: "asc",
+        limit: 100
+    });
     return messages;
 }
 
